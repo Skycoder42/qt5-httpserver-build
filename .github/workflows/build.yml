@@ -36,10 +36,12 @@ jobs:
           platform: ${{matrix.platform}}
           cachedir: qt/${{matrix.version}}/${{matrix.platform}}
       - name: qmake
+        working-directory: qthttpserver
         run: |
           qmake
           ${{steps.qt.outputs.make}} qmake_all
       - name: make module
+        working-directory: qthttpserver
         run: |
           ${{steps.qt.outputs.make}}
           ${{steps.qt.outputs.make}} INSTALL_ROOT="${{steps.qt.outputs.installdir}}" install
@@ -49,6 +51,6 @@ jobs:
         with:
           repo_token: ${{secrets.GITHUB_TOKEN}}
           directory: ${{steps.qt.outputs.outdir}}/${{matrix.version}}
-          asset_name: qtjsonserializer-${{matrix.platform}}-${{matrix.version}}
+          asset_name: qthttpserver-${{matrix.platform}}-${{matrix.version}}
           tag: ${{github.ref}}
           overwrite: true
