@@ -35,6 +35,9 @@ jobs:
           version: ${{matrix.version}}
           platform: ${{matrix.platform}}
           cachedir: qt/${{matrix.version}}/${{matrix.platform}}
+      - name: fix version
+        working-directory: qthttpserver
+        run: echo "MODULE_VERSION = ${{matrix.version}}" >> .qmake.conf
       - name: qmake
         working-directory: qthttpserver
         run: |
