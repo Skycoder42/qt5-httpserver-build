@@ -1,0 +1,3 @@
+[submodule "qthttpserver"]
+	path = qthttpserver
+	url = https://code.qt.io/qt-labs/qthttpserver.git
